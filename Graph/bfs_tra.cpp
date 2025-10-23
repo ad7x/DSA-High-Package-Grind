@@ -85,9 +85,9 @@ int main(){
 
     Graph<int> g;
 
-    g.addEdge(0,9,5,0);
-    g.addEdge(9,2,7,0);
-    g.addEdge(9,3,6,0);
+    g.addEdge(0,1,5,0);
+    g.addEdge(1,2,7,0);
+    g.addEdge(1,3,6,0);
     g.addEdge(2,3,8,0);
     g.addEdge(3,4,9,0);
     g.addEdge(4,5,11,0);
@@ -98,7 +98,7 @@ int main(){
 
     g.printadjlst();
 
-    g.bfstraversal(5);
+    g.bfstraversal(0);
 
 
     return 0;
