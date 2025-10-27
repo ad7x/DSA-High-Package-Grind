@@ -1,56 +1,45 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-#include<unordered_map>
-#include<list>
-#include<queue>
-//generalize the code of the graph 
-template<typename T>
+#include <unordered_map>
+#include <list>
+#include<vector>
 
-class Graph{
-    public:
-
-    unordered_map<T,list<pair<T,int>>> adjlst;
-    void addEdge(T u, T v,int wt, int dir){
-        if(dir==1){
-            adjlst[u].push_back({v,wt});
-        }
-        else{
-            adjlst[u].push_back({v,wt});
-            adjlst[v].push_back({u,wt});
-
-        }
-    }
-
-
-
-    void printadjlst(){
-        for(auto i:adjlst){
-            cout<<i.first<<" - (";
-            for(auto j:i.second ){
-                cout<< "{ "<<j.first<< ", "<<j.second<<" }";
-            }
-            cout<<")\n";
-        }
-
-        cout<<endl;
-    }
-
-    void dfstraversal(T src, unordered_map<T,bool> &visited){
-        visited[src]=true;
-        cout<<src<<" ";
-
-        for(auto nbrpr:adjlst[src]){
-            T child= nbrpr.first;
-            if(!visited[child]){
-                dfstraversal(child, visited);
-                
-            }
-        }
-    }
-
-};
-
-int main(){
+class Solution {
+  public:
+    unordered_map<int,list<int>> adjlst;
     
-    return 0;
-}
+    bool checkcycledfs(int src,unordered_map<int,bool> &visited, unordered_map<int,bool> &pvisited){
+        visited[src]=true;
+        pvisited[src]=true;
+        
+        for(auto nbr:adjlst[src]){
+            if(!visited[nbr]) checkcycledfs(nbr,visited,pvisited);
+            
+            if(visited[nbr] && pvisited[nbr]) return true;
+        }
+        
+        pvisited[src]=false;
+        return false;
+        
+    }
+    
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        
+        for(auto edge:edges){
+            int u=edge[0];
+            int v=edge[1];
+            adjlst[u].push_back(v);
+        }
+        
+        unordered_map<int,bool> visited;
+        unordered_map<int,bool> pvisited;
+        
+        for(auto i=0;i<V;i++){
+            if(!visited[i]) if(checkcycledfs(i,visited,pvisited)) return true;
+            
+        }
+        
+        
+        return false;
+    }
+};
