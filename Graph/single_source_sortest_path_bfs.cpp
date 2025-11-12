@@ -134,7 +134,7 @@ int main(){
 
 
 
-    g.shortestpathbfs('a','x');
+    g.shortestpathbfs('b','p');
 
     cout<<"\neverything is fine\n\n";
     
