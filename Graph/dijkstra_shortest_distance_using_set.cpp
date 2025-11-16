@@ -91,7 +91,7 @@ int main(){
     g.addedge(3,4,0,11);
     g.addedge(4,5,0,6);
     g.addedge(5,6,0,9);
-    
+    g.addedge(8,10,0,5);
     g.shortestpathdijkstra(6,4,6);
     return 0;
 }
