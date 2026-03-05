@@ -110,9 +110,12 @@ int main(){
     g.addedge(2,3,1,5);
     g.addedge(2,4,1,6);
     g.addedge(4,3,1,1);
+    
 
 
     g.toposortusingdfs(0,st);
+
+    g.shortestpath(st,5);
 
     g.shortestpath(st,5);
 
